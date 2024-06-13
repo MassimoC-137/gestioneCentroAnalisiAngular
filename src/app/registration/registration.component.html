@@ -1,0 +1,19 @@
+<div class="signup-card">
+    <div class="card-title">
+        <h1>Crea un nuovo account</h1>
+        <span>Hai già un account? <a routerLink="/login">Accedi</a></span>
+    </div>
+    <form class="form-group" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <input type="text" name="username" placeholder="Username" formControlName="username">
+        <input type="password" name="password" placeholder="Password" formControlName="password">
+        <input type="email" name="email" placeholder="Email" formControlName="email">
+        <input type="text" name="nome" placeholder="Nome" formControlName="nome">
+        <input type="text" name="cognome" placeholder="Cognome" formControlName="cognome">
+        <input type="text" name="codice_fiscale" placeholder="Codice fiscale" formControlName="codice_fiscale">
+
+        <input type="submit" value="Registrati">
+    </form>
+    <div class="card-terms">
+        <input type="checkbox"> <span>Ho letto ed accetto i <a href="">Termini di Servizio</a></span>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.button-container {
+  align-self: flex-end;
+  margin-bottom: 20px;
+
+  button {
+    margin-left: 10px;
+  }
+}
+
+.welcome-card {
+  max-width: 100%;
+  width: 100%;
+  margin: 20px;
+}
+
+.responsive-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 10px 0;
+}
+
+@media (max-width: 600px) {
+  .welcome-card {
+    max-width: 100%;
+  }
+
+  .responsive-img {
+    width: 100%;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .welcome-card {
+    max-width: 75%;
+  }
+}

@@ -1,0 +1,18 @@
+<div class="login-card">
+
+    <div class="card-title">
+        
+        <button mat-icon-button routerLink="/home">
+            <mat-icon>home</mat-icon>
+          </button>
+
+        <h1>Login</h1>
+        <span>Non hai ancora un account? <a routerLink="/registration">Registrati</a></span>
+    </div>
+    <form class="form-group" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <input name="username" type="username" formControlName="username" placeholder="Username">
+        <input type="password" formControlName="password" placeholder="Password">
+        <button>Invia</button>
+    </form>
+
+</div>

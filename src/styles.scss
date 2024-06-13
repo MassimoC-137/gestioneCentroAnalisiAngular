@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+    background-color: #87CEEB; 
+    margin: 0;
+    font-family: Roboto, sans-serif; 
+  }
+  
+  .home-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .welcome-card {
+    max-width: 400px;
+    margin: 20px;
+  }
+  
