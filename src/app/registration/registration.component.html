@@ -1,19 +1,50 @@
-<div class="signup-card">
-    <div class="card-title">
+<div class="registration-container">
+    <div class="signup-card">
+      <div class="card-title">
         <h1>Crea un nuovo account</h1>
         <span>Hai già un account? <a routerLink="/login">Accedi</a></span>
+      </div>
+      <form class="form-group" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <div class="form-field">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" placeholder="Username" formControlName="username">
+        </div>
+        
+        <div class="form-field">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Password" formControlName="password">
+        </div>
+        
+        <div class="form-field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="Email" formControlName="email">
+        </div>
+        
+        <div class="form-field">
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" name="nome" placeholder="Nome" formControlName="nome">
+        </div>
+        
+        <div class="form-field">
+          <label for="cognome">Cognome</label>
+          <input type="text" id="cognome" name="cognome" placeholder="Cognome" formControlName="cognome">
+        </div>
+        
+        <div class="form-field">
+          <label for="codice_fiscale">Codice Fiscale</label>
+          <input type="text" id="codice_fiscale" name="codice_fiscale" placeholder="Codice fiscale" formControlName="codice_fiscale">
+        </div>
+        
+        <div class="card-terms">
+          <input type="checkbox" id="terms" formControlName="terms">
+          <span>Ho letto ed accettato i <a href="">Termini di Servizio</a></span>
+        </div>
+        <div *ngIf="signupForm.controls['terms'].invalid && (signupForm.controls['terms'].dirty || signupForm.controls['terms'].touched)" class="error-message">
+          Devi accettare i Termini di Servizio per continuare.
+        </div>
+        
+        <input type="submit" value="Registrati" [disabled]="!signupForm.valid">
+      </form>
     </div>
-    <form class="form-group" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-        <input type="text" name="username" placeholder="Username" formControlName="username">
-        <input type="password" name="password" placeholder="Password" formControlName="password">
-        <input type="email" name="email" placeholder="Email" formControlName="email">
-        <input type="text" name="nome" placeholder="Nome" formControlName="nome">
-        <input type="text" name="cognome" placeholder="Cognome" formControlName="cognome">
-        <input type="text" name="codice_fiscale" placeholder="Codice fiscale" formControlName="codice_fiscale">
-
-        <input type="submit" value="Registrati">
-    </form>
-    <div class="card-terms">
-        <input type="checkbox"> <span>Ho letto ed accetto i <a href="">Termini di Servizio</a></span>
-    </div>
-</div>
+  </div>
+  

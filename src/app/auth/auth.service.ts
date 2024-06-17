@@ -16,12 +16,16 @@ export class AuthService {
   login(data: any) {
     return this.httpClient.post(`${this.baseUrl}/login`, data)
       .pipe(tap((result) => {
-        localStorage.setItem('authUser', JSON.stringify(result));
+        if (typeof localStorage !== 'undefined') {
+          localStorage.setItem('authUser', JSON.stringify(result));
+        }
       }));
   }
 
   logout() {
-    localStorage.removeItem('authUser');
+    if (typeof localStorage !== 'undefined') {
+      localStorage.removeItem('authUser');
+    }
   }
 
   isLoggedIn() {
@@ -30,4 +34,13 @@ export class AuthService {
     }
     return localStorage.getItem('authUser') !== null;
   }
+
+  getUserRole() {
+    if (this.isLoggedIn()) {
+      const user = JSON.parse(localStorage.getItem('authUser')!);
+      return user.role;
+    }
+    return null;
+  }
+  
 }
