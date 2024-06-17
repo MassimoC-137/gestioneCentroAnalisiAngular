@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HomeService } from './home.service';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -12,7 +12,8 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     MatCardModule,
     MatButtonModule,
-    RouterModule
+    RouterModule,
+    NgOptimizedImage
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']

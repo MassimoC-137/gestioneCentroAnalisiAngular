@@ -1,24 +1,3 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from './auth.service';
-
-@Component({
-  selector: 'app-post-login',
-  template: '',
-})
-export class PostLoginComponent implements OnInit {
-  constructor(private authService: AuthService, private router: Router) {}
-
-  ngOnInit(): void {
-    const role = this.authService.getUserRole();
-    if (role === 'admin') {
-      this.router.navigate(['/admin-dashboard']);
-    } else if (role === 'patient') {
-      this.router.navigate(['/patient-dashboard']);
-    } else if (role === 'doctor') {
-      this.router.navigate(['/doctor-dashboard']);
-    } else {
-      this.router.navigate(['/login']);
-    }
-  }
-}
+<div class="loading-container">
+  <p>Reindirizzamento in corso, si prega di attendere...</p>
+</div>
