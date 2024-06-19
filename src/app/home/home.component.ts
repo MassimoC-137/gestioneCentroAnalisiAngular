@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { HomeService } from './home.service';
+import { Component} from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,21 +10,12 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     MatCardModule,
+    RouterLink,
     MatButtonModule,
-    RouterModule,
     NgOptimizedImage
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
-  homeData: any; 
-
-  constructor(private homeService: HomeService) { }
-
-  ngOnInit(): void {
-    this.homeService.getHomeData().subscribe((data: any) => { 
-      this.homeData = data;
-    });
-  }
+export class HomeComponent {
 }

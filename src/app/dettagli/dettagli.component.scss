@@ -1,0 +1,21 @@
+.dettagli-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #87CEEB;
+  }
+  
+  .dettagli-card {
+    max-width: 600px;
+    width: 100%;
+    margin: 20px;
+    text-align: center;
+  }
+  
+  .medico-img {
+    max-width: 100%;
+    height: auto;
+    margin: 20px 0;
+  }
+  

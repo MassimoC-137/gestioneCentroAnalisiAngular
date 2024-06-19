@@ -1,5 +1,4 @@
-import { provideRouter, RouterModule, Routes } from '@angular/router';
-import { importProvidersFrom } from '@angular/core';
+import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -12,15 +11,17 @@ import { AuthGuard } from './auth/auth.guard';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { PatientDashboardComponent } from './patient-dashboard/patient-dashboard.component';
 import { DoctorDashboardComponent } from './doctor-dashboard/doctor-dashboard.component';
-import { PostLoginComponent } from './post-login/post-login.component';
 import { UserManagementComponent } from './user-management/user-management.component';
+import { DettagliComponent } from './dettagli/dettagli.component';
+
 
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: '', redirectTo: 'login', pathMatch:'full'},
+  { path: 'home', component: HomeComponent},
   { path: 'login', component: LoginComponent },
   { path: 'registration', component: RegistrationComponent },
+  { path: 'dettagli', component: DettagliComponent },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
   { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AuthGuard] },
   { path: 'admin-dashboard/user-management', component: UserManagementComponent, canActivate: [AuthGuard] },

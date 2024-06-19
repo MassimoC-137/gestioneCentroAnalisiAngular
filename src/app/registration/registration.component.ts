@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { inject } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { CommonModule, NgIf } from '@angular/common';
+import { NgIf } from '@angular/common';
 import { AuthService } from '../auth/auth.service';
 
 @Component({
@@ -13,8 +12,12 @@ import { AuthService } from '../auth/auth.service';
   styleUrl: './registration.component.scss'
 })
 export class RegistrationComponent {
-  authService = inject(AuthService);
-  router = inject(Router);
+
+  
+  constructor(
+    private authService:AuthService,
+    private router:Router
+  ){}
 
   public signupForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
