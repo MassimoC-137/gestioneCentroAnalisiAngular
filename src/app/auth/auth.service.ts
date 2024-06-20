@@ -1,12 +1,17 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
-import { tap } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private httpClient = inject(HttpClient);
+
+  constructor(
+    private httpClient: HttpClient,
+    private router: Router
+  ) { }
   private baseUrl = 'http://localhost:8080/api/auth';
 
   signup(data: any) {
@@ -15,11 +20,16 @@ export class AuthService {
 
   login(data: any) {
     return this.httpClient.post(`${this.baseUrl}/login`, data)
-      .pipe(tap((result) => {
-        if (typeof localStorage !== 'undefined') {
-          localStorage.setItem('authUser', JSON.stringify(result));
+      .subscribe({
+        next: (res:any) => {
+          localStorage.setItem('authUser', res['jwt.token'])
+          this.router.navigateByUrl('/post-login');
+        }, 
+        error: (err) => {
+          console.log("Errore:", err);
+          this.router.navigateByUrl('/login');
         }
-      }));
+      });
   }
 
   logout() {
@@ -37,10 +47,19 @@ export class AuthService {
 
   getUserRole() {
     if (this.isLoggedIn()) {
-      const user = JSON.parse(localStorage.getItem('authUser')!);
-      return user.role;
+      const token = localStorage.getItem('authUser')!;
+      const decoded: any = jwtDecode(token);
+      console.log(decoded);
+      return decoded.role;
     }
     return null;
   }
-  
+
+  getCurrentUser() {
+    if (this.isLoggedIn()) {
+      const token = localStorage.getItem('authUser')!;
+      return jwtDecode(token);
+    }
+    return null;
+  }
 }

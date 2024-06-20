@@ -13,6 +13,7 @@ import { PatientDashboardComponent } from './patient-dashboard/patient-dashboard
 import { DoctorDashboardComponent } from './doctor-dashboard/doctor-dashboard.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 import { DettagliComponent } from './dettagli/dettagli.component';
+import { PostLoginComponent } from './post-login/post-login.component';
 
 
 
@@ -20,6 +21,7 @@ export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch:'full'},
   { path: 'home', component: HomeComponent},
   { path: 'login', component: LoginComponent },
+  { path: 'post-login', component: PostLoginComponent },
   { path: 'registration', component: RegistrationComponent },
   { path: 'dettagli', component: DettagliComponent },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },

@@ -14,11 +14,11 @@ export class PostLoginComponent implements OnInit {
 
   ngOnInit(): void {
     const role = this.authService.getUserRole();
-    if (role === 'admin') {
+    if (role === 'ROLE_ADMIN') {
       this.router.navigate(['/admin-dashboard']);
-    } else if (role === 'patient') {
+    } else if (role === 'ROLE_CLASSIC_PATIENT') {
       this.router.navigate(['/patient-dashboard']);
-    } else if (role === 'doctor') {
+    } else if (role === 'ROLE_CLASSIC_DOCTOR') {
       this.router.navigate(['/doctor-dashboard']);
     } else {
       this.router.navigate(['/login']);

@@ -3,13 +3,15 @@ import { inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { log } from 'console';
 
 
 @Component({
-  selector: 'app-login', 
+  selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterModule, MatIconModule],
+  imports: [ReactiveFormsModule, RouterModule, MatIconModule, MatProgressSpinnerModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -22,16 +24,9 @@ export class LoginComponent {
     password: new FormControl('', [Validators.required])
   })
 
-  onSubmit(){
-    if(this.loginForm.valid){
-      console.log(this.loginForm.value);
+  onSubmit() {
+    if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value)
-      .subscribe((data: any) => {
-        if(this.authService.isLoggedIn()){
-          this.router.navigate(['/admin']);
-        }
-        console.log(data);
-      });
     }
   }
 }
