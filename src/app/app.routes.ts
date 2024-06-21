@@ -7,7 +7,7 @@ import { DetailutenteComponent } from './detailutente/detailutente.component';
 import { ListaanalisiComponent } from './listaanalisi/listaanalisi.component';
 import { DetailanalisiComponent } from './detailanalisi/detailanalisi.component';
 import { ErrorpageComponent } from './errorpage/errorpage.component';
-import { AuthGuard } from './auth/auth.guard';
+import { authGuard } from './auth/auth.guard';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { PatientDashboardComponent } from './patient-dashboard/patient-dashboard.component';
 import { DoctorDashboardComponent } from './doctor-dashboard/doctor-dashboard.component';
@@ -24,13 +24,13 @@ export const routes: Routes = [
   { path: 'post-login', component: PostLoginComponent },
   { path: 'registration', component: RegistrationComponent },
   { path: 'dettagli', component: DettagliComponent },
-  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
-  { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AuthGuard] },
-  { path: 'admin-dashboard/user-management', component: UserManagementComponent, canActivate: [AuthGuard] },
-  { path: 'patient-dashboard', component: PatientDashboardComponent, canActivate: [AuthGuard] },
-  { path: 'doctor-dashboard', component: DoctorDashboardComponent, canActivate: [AuthGuard] },
-  { path: 'detailutente', component: DetailutenteComponent, canActivate: [AuthGuard] },
-  { path: 'listaanalisi', component: ListaanalisiComponent, canActivate: [AuthGuard] },
-  { path: 'detailanalisi', component: DetailanalisiComponent, canActivate: [AuthGuard] },
+  { path: 'admin', component: AdminComponent, canActivate: [authGuard] },
+  { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [authGuard] },
+  { path: 'admin-dashboard/user-management', component: UserManagementComponent, canActivate: [authGuard] },
+  { path: 'patient-dashboard', component: PatientDashboardComponent, canActivate: [authGuard] },
+  { path: 'doctor-dashboard', component: DoctorDashboardComponent, canActivate: [authGuard] },
+  { path: 'detailutente', component: DetailutenteComponent, canActivate: [authGuard] },
+  { path: 'listaanalisi', component: ListaanalisiComponent, canActivate: [authGuard] },
+  { path: 'detailanalisi', component: DetailanalisiComponent, canActivate: [authGuard] },
   { path: '**', component: ErrorpageComponent }
 ];

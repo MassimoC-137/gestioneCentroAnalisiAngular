@@ -45,12 +45,12 @@ export class AuthService {
     return localStorage.getItem('authUser') !== null;
   }
 
-  getUserRole() {
+  getUserRoles() {
     if (this.isLoggedIn()) {
       const token = localStorage.getItem('authUser')!;
       const decoded: any = jwtDecode(token);
       console.log(decoded);
-      return decoded.role;
+      return decoded.roles;
     }
     return null;
   }
