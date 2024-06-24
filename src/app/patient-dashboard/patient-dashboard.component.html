@@ -1,5 +1,30 @@
 <div class="patient-dashboard">
-    <h1>Patient Dashboard</h1>
-    
+  <h1>Dashboard del Paziente</h1>
+  <p>Benvenuto, {{ username }}!</p>
+
+  <button mat-icon-button (click)="logout()" class="logout-button"></button>
+  <mat-icon>logout</mat-icon>
+
+  <div class="analisi-list">
+    <h2>Le tue analisi</h2>
+    <table mat-table [dataSource]="analisi" class="mat-elevation-z8">
+      <ng-container matColumnDef="data">
+        <th mat-header-cell *matHeaderCellDef> Data </th>
+        <td mat-cell *matCellDef="let element"> {{element.data}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="tipo">
+        <th mat-header-cell *matHeaderCellDef> Tipo </th>
+        <td mat-cell *matCellDef="let element"> {{element.tipo}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="risultato">
+        <th mat-header-cell *matHeaderCellDef> Risultato </th>
+        <td mat-cell *matCellDef="let element"> {{element.risultato}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
   </div>
-  
+</div>

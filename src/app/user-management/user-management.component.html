@@ -1,6 +1,17 @@
 <div class="user-management">
   <h1>Gestione Utenti</h1>
 
+  <button mat-icon-button (click)="logout()" class="logout-button">
+    <mat-icon>logout</mat-icon>
+  </button>
+  
+  <div class="search-container">
+    <form [formGroup]="searchForm" (ngSubmit)="searchUsers()">
+      <input formControlName="search" placeholder="Cerca utenti...">
+      <button type="submit">Cerca</button>
+    </form>
+  </div>
+
   <table mat-table [dataSource]="users" class="mat-elevation-z8">
     <ng-container matColumnDef="username">
       <th mat-header-cell *matHeaderCellDef> Username </th>
@@ -12,19 +23,39 @@
       <td mat-cell *matCellDef="let user"> {{user.email}} </td>
     </ng-container>
 
+    <ng-container matColumnDef="role">
+      <th mat-header-cell *matHeaderCellDef> Ruolo </th>
+      <td mat-cell *matCellDef="let user"> {{user.role}} </td>
+    </ng-container>
+
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef> Azioni </th>
       <td mat-cell *matCellDef="let user">
-        <button mat-button (click)="editUser(user)">Modifica</button>
+        <button mat-button (click)="selectUser(user)">Modifica</button>
         <button mat-button (click)="deleteUser(user.id)">Elimina</button>
       </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+    </table>
 
-  <button mat-fab color="primary" aria-label="Add" (click)="addUser()">
-    <mat-icon>add</mat-icon>
-  </button>
+  <div *ngIf="selectedUser" class="user-form">
+    <h3>Modifica Utente</h3>
+    <form [formGroup]="userForm" (ngSubmit)="saveUser()">
+      <input formControlName="attivo" placeholder="Attivo">
+      <input formControlName="codice_fiscale" placeholder="Codice Fiscale">
+      <input formControlName="cognome" placeholder="Cognome">
+      <input formControlName="email" placeholder="Email">
+      <input formControlName="nome" placeholder="Nome">
+      <input formControlName="username" placeholder="Username">
+      <select formControlName="role">
+        <option value="ROLE_ADMIN">Admin</option>
+        <option value="ROLE_CLASSIC_DOCTOR">Medico</option>
+        <option value="ROLE_CLASSIC_PATIENT">Paziente</option>
+      </select>
+      <button type="submit">Salva</button>
+      <button type="button" (click)="clearSelection()">Annulla</button>
+    </form>
+  </div>
 </div>

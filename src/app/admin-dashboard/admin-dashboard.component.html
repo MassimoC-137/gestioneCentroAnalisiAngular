@@ -1,8 +1,10 @@
 <div class="admin-dashboard">
   <h1>Dashboard dell'Amministratore</h1>
   <p>Benvenuto, Admin!</p>
-
+  <button mat-icon-button (click)="logout()" class="logout-button">
+    <mat-icon>logout</mat-icon>
+  </button>
   <div class="admin-actions">
-    <button mat-raised-button color="primary" routerLink="/user-management">Gestione Utenti</button>
+    <button mat-raised-button color="primary" routerLink="/admin-dashboard/user-management">Gestione Utenti</button>
   </div>
 </div>

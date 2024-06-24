@@ -9,8 +9,8 @@ import { DetailanalisiComponent } from './detailanalisi/detailanalisi.component'
 import { ErrorpageComponent } from './errorpage/errorpage.component';
 import { authGuard } from './auth/auth.guard';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
-import { PatientDashboardComponent } from './patient-dashboard/patient-dashboard.component';
 import { DoctorDashboardComponent } from './doctor-dashboard/doctor-dashboard.component';
+import { PatientDashboardComponent } from './patient-dashboard/patient-dashboard.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 import { DettagliComponent } from './dettagli/dettagli.component';
 import { PostLoginComponent } from './post-login/post-login.component';
@@ -27,8 +27,8 @@ export const routes: Routes = [
   { path: 'admin', component: AdminComponent, canActivate: [authGuard] },
   { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [authGuard] },
   { path: 'admin-dashboard/user-management', component: UserManagementComponent, canActivate: [authGuard] },
-  { path: 'patient-dashboard', component: PatientDashboardComponent, canActivate: [authGuard] },
   { path: 'doctor-dashboard', component: DoctorDashboardComponent, canActivate: [authGuard] },
+  { path: 'patient-dashboard', component: PatientDashboardComponent, canActivate: [authGuard] },
   { path: 'detailutente', component: DetailutenteComponent, canActivate: [authGuard] },
   { path: 'listaanalisi', component: ListaanalisiComponent, canActivate: [authGuard] },
   { path: 'detailanalisi', component: DetailanalisiComponent, canActivate: [authGuard] },
