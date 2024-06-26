@@ -54,7 +54,11 @@
         <option value="ROLE_CLASSIC_DOCTOR">Medico</option>
         <option value="ROLE_CLASSIC_PATIENT">Paziente</option>
       </select>
+      <input *ngIf="userForm.get('role')?.value === 'ROLE_CLASSIC_PATIENT'" formControlName="medicoId" placeholder="ID Medico per collegare Paziente">
       <button type="submit">Salva</button>
+      <button mat-button (click)="addPazienteToMedico(userForm.get('medicoId')?.value || undefined, selectedUser.id)">
+        Collega Paziente al Medico
+      </button>
       <button type="button" (click)="clearSelection()">Annulla</button>
     </form>
   </div>

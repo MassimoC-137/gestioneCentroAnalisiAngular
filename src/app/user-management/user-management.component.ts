@@ -50,12 +50,14 @@ export class UserManagementComponent implements OnInit {
   ) {
     this.userForm = this.fb.group({
       id: [''],
+      attivo: ['',Validators.required],
       codice_fiscale: ['', Validators.required],
       cognome: ['', Validators.required],
       nome: ['', Validators.required],
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      role: ['', Validators.required]
+      role: ['', Validators.required], 
+      medicoId: ['']
     });
 
     this.searchForm = this.fb.group({
@@ -128,5 +130,29 @@ export class UserManagementComponent implements OnInit {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
+
+  addPazienteToMedico(medicoId: number | undefined, pazienteId: number | undefined): void {
+    if (medicoId !== undefined && pazienteId !== undefined) {
+      this.userService.addPazienteToMedico(medicoId, pazienteId).subscribe({
+        next: () => {
+          this.loadUsers();
+          this.clearSelection();
+          console.log('Paziente collegato con successo al medico.');
+        },
+        error: (err) => {
+          console.error('Errore durante il collegamento del paziente al medico:', err);
+        }
+      });
+    } else {
+      // Gestisci il caso in cui uno dei due ID non è valido
+      if (medicoId === undefined) {
+        console.error('Invalid medicoId');
+      }
+      if (pazienteId === undefined) {
+        console.error('Invalid pazienteId');
+      }
+    }
+  }
   
+
 }
