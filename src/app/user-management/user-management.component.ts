@@ -7,8 +7,19 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { CommonModule } from '@angular/common';
 import { UserService } from '../services/user.service';
 import { AuthService } from '../auth/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
+import { PageEvent, MatPaginatorModule } from '@angular/material/paginator';
+import { UserEditComponent } from '../user-edit/user-edit.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
+
+interface Role {
+  id: number; 
+  codice: string;
+  descrizione: string;
+}
 
 interface User {
   attivo: boolean;
@@ -18,7 +29,7 @@ interface User {
   nome: string; 
   username: string;
   email: string;
-  role: string;
+  role: Role;
 }
 
 @Component({
@@ -27,12 +38,34 @@ interface User {
   imports: [
     MatTableModule,
     MatButtonModule,
+    MatDialogModule,
     MatIconModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    RouterLink,
+    MatPaginatorModule, 
+    UserEditComponent,
+    ConfirmDialogComponent,
+    RouterModule
   ],
   templateUrl: './user-management.component.html',
-  styleUrls: ['./user-management.component.scss']
+  styleUrls: ['./user-management.component.scss'],
+  animations: [
+    trigger('transitionMessages', [
+      state('void', style({
+        opacity: 0
+      })),
+      state('*', style({
+        opacity: 1
+      })),
+      transition(':enter', [
+        animate('0.5s ease-in')
+      ]),
+      transition(':leave', [
+        animate('0.5s ease-out')
+      ])
+    ])
+  ]
 })
 export class UserManagementComponent implements OnInit {
   users: MatTableDataSource<User> = new MatTableDataSource();
@@ -46,7 +79,8 @@ export class UserManagementComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private dialog: MatDialog
   ) {
     this.userForm = this.fb.group({
       id: [''],
@@ -131,6 +165,7 @@ export class UserManagementComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  /*
   addPazienteToMedico(medicoId: number | undefined, pazienteId: number | undefined): void {
     if (medicoId !== undefined && pazienteId !== undefined) {
       this.userService.addPazienteToMedico(medicoId, pazienteId).subscribe({
@@ -144,7 +179,7 @@ export class UserManagementComponent implements OnInit {
         }
       });
     } else {
-      // Gestisci il caso in cui uno dei due ID non è valido
+      
       if (medicoId === undefined) {
         console.error('Invalid medicoId');
       }
@@ -153,6 +188,24 @@ export class UserManagementComponent implements OnInit {
       }
     }
   }
+  */
+
+  openConfirmDialog(id: number): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent);
   
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteUser(id);
+      }
+    });
+  }
+
+
+  getCodice(ruoli: Role[]): string {
+    if (ruoli && ruoli.length > 0) {
+      return ruoli.map(ruolo => ruolo.codice).join(', ');
+    }
+    return 'No Role';
+  }
 
 }

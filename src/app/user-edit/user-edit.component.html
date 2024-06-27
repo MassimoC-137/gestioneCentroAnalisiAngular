@@ -1,0 +1,22 @@
+<div class="user-form">
+    <h3>Modifica Utente</h3>
+    <form [formGroup]="userForm" (ngSubmit)="saveUser()">
+      <input formControlName="attivo" placeholder="Attivo">
+      <input formControlName="codice_fiscale" placeholder="Codice Fiscale">
+      <input formControlName="cognome" placeholder="Cognome">
+      <input formControlName="email" placeholder="Email">
+      <input formControlName="nome" placeholder="Nome">
+      <input formControlName="username" placeholder="Username">
+      <select formControlName="role">
+        <option value="ROLE_ADMIN">Admin</option>
+        <option value="ROLE_CLASSIC_DOCTOR">Medico</option>
+        <option value="ROLE_CLASSIC_PATIENT">Paziente</option>
+      </select>
+      <button type="submit">Salva</button>
+      <button type="button" (click)="clearSelection()">Annulla</button>
+    </form>
+    <button mat-button (click)="addPazienteToMedico(userForm.get('medicoId')?.value || undefined, user?.id)">
+        Collega Paziente al Medico
+    </button>
+  </div>
+  

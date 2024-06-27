@@ -2,6 +2,23 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+interface Role {
+  id: number; 
+  codice: string;
+  descrizione: string;
+}
+
+interface User {
+  attivo: boolean;
+  id: number;
+  codice_fiscale: string; 
+  cognome: string; 
+  nome: string; 
+  username: string;
+  email: string;
+  ruoli: Role[];
+}
+
 @Injectable({
   providedIn: 'root'
 })

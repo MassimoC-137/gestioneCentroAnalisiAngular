@@ -14,6 +14,7 @@ import { PatientDashboardComponent } from './patient-dashboard/patient-dashboard
 import { UserManagementComponent } from './user-management/user-management.component';
 import { DettagliComponent } from './dettagli/dettagli.component';
 import { PostLoginComponent } from './post-login/post-login.component';
+import { UserEditComponent } from './user-edit/user-edit.component';
 
 
 
@@ -26,7 +27,8 @@ export const routes: Routes = [
   { path: 'dettagli', component: DettagliComponent },
   { path: 'admin', component: AdminComponent, canActivate: [authGuard] },
   { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [authGuard] },
-  { path: 'admin-dashboard/user-management', component: UserManagementComponent, canActivate: [authGuard] },
+  { path: 'user-management', component: UserManagementComponent, canActivate: [authGuard] },
+  { path: 'user-details/user/:id/edit', component: UserEditComponent, canActivate: [authGuard] },
   { path: 'doctor-dashboard', component: DoctorDashboardComponent, canActivate: [authGuard] },
   { path: 'patient-dashboard', component: PatientDashboardComponent, canActivate: [authGuard] },
   { path: 'detailutente', component: DetailutenteComponent, canActivate: [authGuard] },
