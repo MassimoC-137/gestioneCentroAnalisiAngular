@@ -68,13 +68,23 @@ export class UserEditComponent implements OnInit {
   saveUser(): void {
     if (this.userForm.valid) {
       if (this.user && this.user.id) {
-        this.userService.updateUser(this.user.id, this.userForm.value).subscribe(() => {
-          console.log('Utente aggiornato con successo.');
-        });
+        this.userService.updateUser(this.user.id, this.userForm.value).subscribe(
+          () => {
+            console.log('Utente aggiornato con successo.');
+          },
+          (error) => {
+            console.error('Errore durante l\'aggiornamento dell\'utente', error);
+          }
+        );
       } else {
-        this.userService.addUser(this.userForm.value).subscribe(() => {
-          console.log('Utente aggiunto con successo.');
-        });
+        this.userService.addUser(this.userForm.value).subscribe(
+          () => {
+            console.log('Utente aggiunto con successo.');
+          },
+          (error) => {
+            console.error('Errore durante l\'aggiunta dell\'utente', error);
+          }
+        );
       }
     }
   }

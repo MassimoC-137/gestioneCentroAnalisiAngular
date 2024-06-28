@@ -1,7 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { jwtDecode } from 'jwt-decode';
+import { jwtDecode, JwtPayload } from 'jwt-decode';
+
+interface ExtendedJwtPayload extends JwtPayload {
+  id: number;
+}
 
 @Injectable({
   providedIn: 'root'

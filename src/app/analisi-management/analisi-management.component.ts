@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { AnalisiService } from '../services/analisi.service';
 import { AuthService } from '../auth/auth.service';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -11,8 +12,17 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
+interface Analisi {
+  id: number;
+  esito_buono: boolean;
+  tipo: string; 
+  data_ora: string;
+  paziente: string;
+  medico: string; 
+}
+
 @Component({
-  selector: 'app-doctor-dashboard',
+  selector: 'app-analisi-management',
   standalone: true,
   imports: [
     CommonModule,
@@ -26,12 +36,12 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatOptionModule,
     MatPaginatorModule
   ],
-  templateUrl: './doctor-dashboard.component.html',
-  styleUrl: './doctor-dashboard.component.scss'
+  templateUrl: './analisi-management.component.html',
+  styleUrl: './analisi-management.component.scss'
 })
-export class DoctorDashboardComponent  implements OnInit {
+export class AnalisiManagementComponent implements OnInit {
   analisiList: MatTableDataSource<any> = new MatTableDataSource();
-  displayedColumns: string[] = ['dataOra', 'tipo', 'esitoBuono', 'actions'];
+  displayedColumns: string[] = ['dataOra', 'tipo', 'esitoBuono', 'paziente', 'actions'];
   analisiForm: FormGroup;
   selectedAnalisi: any | null = null;
 

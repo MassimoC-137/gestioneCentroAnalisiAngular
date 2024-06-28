@@ -1,0 +1,67 @@
+<div class="analisi-management">
+    <h1>Gestione Analisi</h1>
+  
+    <table mat-table [dataSource]="analisiList" class="mat-elevation-z8">
+      <ng-container matColumnDef="dataOra">
+        <th mat-header-cell *matHeaderCellDef> Data e Ora </th>
+        <td mat-cell *matCellDef="let analisi"> {{analisi.dataOra | date:'short'}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="tipo">
+        <th mat-header-cell *matHeaderCellDef> Tipo </th>
+        <td mat-cell *matCellDef="let analisi"> {{analisi.tipo}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="esitoBuono">
+        <th mat-header-cell *matHeaderCellDef> Esito Buono </th>
+        <td mat-cell *matCellDef="let analisi"> {{analisi.esitoBuono ? 'Sì' : 'No'}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="paziente">
+        <th mat-header-cell *matHeaderCellDef> Paziente </th>
+        <td mat-cell *matCellDef="let analisi"> {{analisi.paziente.username}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Azioni </th>
+        <td mat-cell *matCellDef="let analisi">
+          <button mat-icon-button (click)="selectAnalisi(analisi)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="deleteAnalisi(analisi.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <div *ngIf="selectedAnalisi" class="analisi-form">
+      <h3>{{ selectedAnalisi ? 'Modifica' : 'Aggiungi' }} Analisi</h3>
+      <form [formGroup]="analisiForm" (ngSubmit)="saveAnalisi()">
+        <mat-form-field>
+          <mat-label>Tipo</mat-label>
+          <input matInput formControlName="tipo">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Data e Ora</mat-label>
+          <input matInput formControlName="dataOra" type="datetime-local">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Esito Buono</mat-label>
+          <mat-select formControlName="esitoBuono">
+            <mat-option [value]="true">Sì</mat-option>
+            <mat-option [value]="false">No</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Paziente ID</mat-label>
+          <input matInput formControlName="pazienteId">
+        </mat-form-field>
+        <button mat-button type="submit">Salva</button>
+        <button mat-button type="button" (click)="clearSelection()">Annulla</button>
+      </form>
+    </div>
+  </div>

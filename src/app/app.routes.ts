@@ -4,8 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { AdminComponent } from './admin/admin.component';
 import { DetailutenteComponent } from './detailutente/detailutente.component';
-import { ListaanalisiComponent } from './listaanalisi/listaanalisi.component';
-import { DetailanalisiComponent } from './detailanalisi/detailanalisi.component';
+import { AnalisiManagementComponent } from './analisi-management/analisi-management.component';
 import { ErrorpageComponent } from './errorpage/errorpage.component';
 import { authGuard } from './auth/auth.guard';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
@@ -32,7 +31,6 @@ export const routes: Routes = [
   { path: 'doctor-dashboard', component: DoctorDashboardComponent, canActivate: [authGuard] },
   { path: 'patient-dashboard', component: PatientDashboardComponent, canActivate: [authGuard] },
   { path: 'detailutente', component: DetailutenteComponent, canActivate: [authGuard] },
-  { path: 'listaanalisi', component: ListaanalisiComponent, canActivate: [authGuard] },
-  { path: 'detailanalisi', component: DetailanalisiComponent, canActivate: [authGuard] },
+  { path: 'analisi-management', component: AnalisiManagementComponent, canActivate: [authGuard] },
   { path: '**', component: ErrorpageComponent }
 ];
